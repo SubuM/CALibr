@@ -216,3 +216,46 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# CALibr local database (contains all app + user data)
+/data/
+/data/**
+!/data/.gitkeep
+
+# macOS
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# Antigravity IDE
+.antigravity/
+.antigravity-workspace
+.ide/
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Confidential data (keys, tokens, credentials)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*
+secrets.*
+.pypirc~
