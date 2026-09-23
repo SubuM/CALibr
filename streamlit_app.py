@@ -1278,14 +1278,12 @@ def render_login() -> SessionUser | None:
     if setup:
         st.success(f"🎉 Library set up: {setup['users']} user(s) created, "
                    f"{setup['admins']} of them **admin**.")
-        creds = "\n".join(
-            f"• {c['name']} → ID **`{c['username']}`**, initial password "
-            f"**`{c['default_password']}`** (must change on first login)"
-            for c in setup["created"])
-        st.info("Sign in with your initial password:\n\n" + creds)
+        st.info("Sign in with your initial password, e.g. for **John Doe** the ID is "
+                f"**`JDO`** and the initial password is **`JDO{DEFAULT_PASSWORD_SUFFIX}`** "
+                "(must change on first login).")
     st.header("🔐 Sign in")
     with st.form("login"):
-        uid = st.text_input("Login ID", placeholder="e.g. ACO (from the team file)")
+        uid = st.text_input("Login ID", placeholder="e.g. JDO (from the team file)")
         pwd = st.text_input("Password", type="password")
         if st.form_submit_button("Sign in"):
             if not uid.strip() or not pwd:
@@ -1297,8 +1295,8 @@ def render_login() -> SessionUser | None:
                 st.error(str(exc))
                 return None
     st.info(f"First time? Your login ID is the 1st letter of your first name plus the first 2 "
-            f"letters of your last name (e.g. Alex Cole → **ACO**). The initial password is your "
-            f"ID followed by `{DEFAULT_PASSWORD_SUFFIX}` (e.g. `ACO{DEFAULT_PASSWORD_SUFFIX}`). "
+            f"letters of your last name (e.g. John Doe → **JDO**). The initial password is your "
+            f"ID followed by `{DEFAULT_PASSWORD_SUFFIX}` (e.g. `JDO{DEFAULT_PASSWORD_SUFFIX}`). "
             "You will be asked to set your own password on first sign-in.")
     return None
 
@@ -1328,7 +1326,6 @@ def render_first_run() -> SessionUser | None:
                 st.session_state["first_run_done"] = {
                     "users": summary["added"],
                     "admins": len(admins),
-                    "created": summary["created"],
                 }
                 st.rerun()
             except Exception as exc:
