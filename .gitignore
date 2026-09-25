@@ -217,10 +217,19 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+# Node.js / TypeScript (CALibr v2: Fastify server + React web)
+node_modules/
+*.tsbuildinfo
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
 # CALibr local database (contains all app + user data)
 /data/
 /data/**
 !/data/.gitkeep
+/server/data/
 
 # macOS
 .DS_Store
